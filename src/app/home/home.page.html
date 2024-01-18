@@ -17,10 +17,14 @@
 
   <div id="container">
     <app-menu></app-menu>
-    
+
     <h1>CMS</h1>
     Este é um sistema de treinamento do torne-se um programador <a href="https://torneseumprogramador.com.br" target="_blank">https://torneseumprogramador.com.br</a>.
     <hr>
+
+    <button (click)="chamarCamera()" style="background: #fff;color:#000;padding: 20px;">Chamar camera</button>
+
+    <img src="{{ imagem }}" alt="">
     <p><a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
 </ion-content>

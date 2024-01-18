@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { Camera } from '@ionic-enterprise/camera/ngx';
+
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
