@@ -17,9 +17,27 @@ export class PaginasPage {
   }
 
   public paginas: Pagina[]
+  maisItensPaginado: boolean = false
+  page: number = 1
 
   async carregaPaginas(){
+    this.page = 1
     this.paginas = await new PaginaService(this.http).todos();
+
+    if(this.paginas.length == 2)
+    {
+      this.maisItensPaginado = true
+    }
+  }
+
+  async maisItens(){
+    this.page += 1;
+    let pgs = await new PaginaService(this.http).todos(this.page);
+    this.paginas = this.paginas.concat(pgs)
+    if(pgs.length < 2)
+    {
+      this.maisItensPaginado = false
+    }
   }
 
 }

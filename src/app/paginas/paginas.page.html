@@ -37,7 +37,7 @@
           <td>{{ pagina.home ? "Sim" : "Não" }}</td>
         </tr>
       </tbody>
-
     </table>
+    <button (click)="maisItens()" *ngIf="maisItensPaginado">Carregar mais </button>
   </div>
 </ion-content>
