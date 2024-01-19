@@ -26,6 +26,10 @@ export class MenuComponent  implements OnInit {
     this.router.navigateByUrl("/paginas")
   }
 
+  administradores(){
+    this.router.navigateByUrl("/administradores")
+  }
+
   openCustom() {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');

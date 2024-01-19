@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      CMS do T.O.P
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">
+        CMS do T.O.P
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="container">
+    <app-menu></app-menu>
+    <button (click)="abrirForm()" class="btn btn-primary">Novo</button>
+    <hr>
+    <div *ngIf="form">
+      <app-adm-form></app-adm-form>
+    </div>
+    <h1>Administradores</h1>
+
+          <div class="linha" *ngFor="let administrador of administradores">
+            <div><label>Nome:</label>{{ administrador.nome }}</div>
+            <div><label>Telefone:</label>{{ administrador.telefone}}</div>
+            <div><label>E-mail:</label> {{ administrador.email}}</div>
+          </div>
+  </div>
+</ion-content>
