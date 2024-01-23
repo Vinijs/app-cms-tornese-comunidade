@@ -7,6 +7,7 @@ import { PaginasPage } from './paginas.page';
 import { PaginasRoutingModule } from './paginas-routing.module';
 import { MenuComponent } from '../shared/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PaginaFormComponent } from './pagina-form/pagina-form.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   declarations: [
     PaginasPage,
-    MenuComponent,]
+    MenuComponent,
+    PaginaFormComponent]
 })
 export class PaginasPageModule {}

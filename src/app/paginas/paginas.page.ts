@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Pagina } from '../models/paginas';
 import { PaginaService } from '../services/paginaService';
 import { HttpClient } from '@angular/common/http';
+import { PaginaFormComponent } from './pagina-form/pagina-form.component';
 
 @Component({
   selector: 'app-paginas',
@@ -11,14 +12,18 @@ import { HttpClient } from '@angular/common/http';
 export class PaginasPage {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) {
-    this.carregaPaginas()
+    this.carregaPaginas(),
+    PaginasPage.setInstance(this);
   }
 
   public paginas: Pagina[]
+  form:boolean = false
   maisItensPaginado: boolean = false
   page: number = 1
+  pagina: Pagina
+
 
   async carregaPaginas(){
     this.page = 1
@@ -30,6 +35,16 @@ export class PaginasPage {
     }
   }
 
+  private static _instance: PaginasPage
+
+  static setInstance(admPage:PaginasPage){
+    PaginasPage._instance = admPage;
+  }
+
+  static getInstance(): PaginasPage{
+    return PaginasPage._instance;
+  }
+
   async maisItens(){
     this.page += 1;
     let pgs = await new PaginaService(this.http).todos(this.page);
@@ -39,5 +54,21 @@ export class PaginasPage {
       this.maisItensPaginado = false
     }
   }
+
+  abrirForm(){
+    if(!this.form) this.form = true
+    else this.form = false
+  }
+
+  async excluir(pagina:Pagina){
+    if(confirm("Confirma a exclusão?")){
+    await new PaginaService(this.http).excluir(pagina)
+    this.carregaPaginas()
+    }
+  }
+
+  alterar(pagina: Pagina){
+    PaginaFormComponent.page = pagina
+    this.abrirForm()
 
 }

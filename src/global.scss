@@ -24,3 +24,34 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+.scrollTable{
+  overflow: auto;
+  width: 100%;
+}
+
+.btn-alterar{
+  margin-right: 5px;
+}
+
+.btn-danger{
+  background-color: red;
+}
+
+input[type="text"], [type="password"], [type="number"], textarea{
+  color: #fff;
+}
+
+input[type="submit"]{
+  color: #fff;
+}
+
+.cancelar{
+  padding: 6px;
+  margin-left: 10px;
+  border-radius: 4px;
+  background-color: #841515;
+}
+
+

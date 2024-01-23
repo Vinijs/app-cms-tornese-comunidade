@@ -17,18 +17,22 @@
 
   <div class="container">
     <app-menu></app-menu>
+    <h1>Administradores</h1>
     <button (click)="abrirForm()" class="btn btn-primary">Novo</button>
     <hr>
     <div *ngIf="form">
       <app-adm-form></app-adm-form>
     </div>
-    <h1>Administradores</h1>
-
-          <div class="linha" *ngFor="let administrador of administradores">
-            <div><label>Nome:</label>{{ administrador.nome }}</div>
-            <div><label>Telefone:</label>{{ administrador.telefone}}</div>
-            <div><label>E-mail:</label> {{ administrador.email}}</div>
-          </div>
-          <button (click)="maisItens()" *ngIf="maisItensPaginado">Carregar mais </button>
-  </div>
+    <div *ngIf="!form">
+            <div class="linha" *ngFor="let administrador of administradores">
+              <div><label>Nome:</label>{{ administrador.nome }}</div>
+              <div><label>Telefone:</label>{{ administrador.telefone}}</div>
+              <div><label>E-mail:</label> {{ administrador.email}}</div>
+              <div><button (click)="alterar(administrador)" class="btn-alterar">Alterar</button>
+                  <button (click)="excluir(administrador)" class="btn-danger">Excluir</button>
+              </div>
+            </div>
+            <button (click)="maisItens()" *ngIf="maisItensPaginado">Carregar mais </button>
+    </div>
+</div>
 </ion-content>

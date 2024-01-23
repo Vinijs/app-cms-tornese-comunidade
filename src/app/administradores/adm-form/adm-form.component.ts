@@ -13,26 +13,15 @@ export class AdmFormComponent  implements OnInit {
 
   constructor(private http: HttpClient) { }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    if(AdmFormComponent.adm){
+      this.administrador = AdmFormComponent.adm
+    }
   }
 
+
+  static adm: Administrador
 
   emptyAdm: Administrador = {id: 0, nome: null, telefone: null, email: null, senha: null}
   administrador: Administrador = this.emptyAdm
-
-
-  salvar(){
-    debugger
-    new AdministradorService(this.http).salvar(this.administrador)
-    this.administrador = this.emptyAdm
-    alert('Salvo no banco de dados')
-    AdministradoresPage.getInstance().form = false;
-    AdministradoresPage.getInstance().carregaAdministradores();
-  }
-
-  cancelar(){
-    this.administrador = this.emptyAdm
-    AdministradoresPage.getInstance().form = false;
-  }
 
 }
