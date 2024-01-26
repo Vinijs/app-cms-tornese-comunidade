@@ -1,0 +1,18 @@
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <form>
+    <fieldset>
+      <legend>Login:</legend>
+      <label for="email">E-mail:</label>
+      <input type="text" id="email" [(ngModel)]="administrador.email" name="email"><br><br>
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" [(ngModel)]="administrador.senha" name="senha"><br><br>
+      <div class="erro" *ngIf="erro">{{erro}}</div>
+      <button (click)="logar()">Entrar</button>
+    </fieldset>
+  </form>
+</ion-content>

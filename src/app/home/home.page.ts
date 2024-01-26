@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-enterprise/camera/ngx';
+import { SessionService } from '../services/sessionService';
+import { Administrador } from '../models/administrador';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +11,15 @@ import { Camera, CameraOptions } from '@ionic-enterprise/camera/ngx';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private router: Router) {
+      this.admLogado = SessionService.get("admlogado")
+      if(!this.admLogado){
+      this.router.navigateByUrl("/login")
+    }
+  }
   imagem: string = ""
   private camera: Camera = new Camera();
+  admLogado: Administrador
 
   chamarCamera(){
     alert("aqui");

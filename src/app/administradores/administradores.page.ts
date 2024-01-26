@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Administrador } from '../models/administrador';
 import { AdministradorService } from '../services/administradorService';
 import { AdmFormComponent } from './adm-form/adm-form.component';
+import { SessionService } from '../services/sessionService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-administradores',
@@ -12,8 +14,12 @@ import { AdmFormComponent } from './adm-form/adm-form.component';
 export class AdministradoresPage implements OnInit {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient, private router: Router
   ) {
+      this.admLogado = SessionService.get("admlogado")
+      if(!this.admLogado){
+          this.router.navigateByUrl("/login")
+        }
       AdministradoresPage.setInstance(this);
 
   }
@@ -30,6 +36,7 @@ export class AdministradoresPage implements OnInit {
 
 
   form: boolean = false;
+  admLogado: Administrador
   maisItensPaginado: boolean = false
   page: number = 1
 
@@ -39,7 +46,7 @@ export class AdministradoresPage implements OnInit {
 
   async maisItens(){
     this.page += 1;
-    let adms = await new AdministradorService(this.http).todos(this.page);
+    let adms = await new AdministradorService(this.http).todos(this.admLogado.token, this.page);
     this.administradores = this.administradores.concat(adms)
     if(adms.length < 2)
     {
@@ -56,7 +63,7 @@ export class AdministradoresPage implements OnInit {
 
   async carregaAdministradores(){
     this.page = 1
-    this.administradores = await new AdministradorService(this.http).todos();
+    this.administradores = await new AdministradorService(this.http).todos(this.admLogado.token);
     if(this.administradores.length == 2)
     {
       this.maisItensPaginado = true
@@ -65,7 +72,7 @@ export class AdministradoresPage implements OnInit {
 
   async excluir(administrador: Administrador){
      if(confirm("Confirma a exclusão?")){
-      await new AdministradorService(this.http).excluir(administrador);
+      await new AdministradorService(this.http).excluir(this.admLogado.token, administrador);
       this.carregaAdministradores();
      }
   }

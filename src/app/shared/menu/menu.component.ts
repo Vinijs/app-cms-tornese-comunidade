@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { SessionService } from 'src/app/services/sessionService';
 
 @Component({
   selector: 'app-menu',
@@ -28,6 +29,11 @@ export class MenuComponent  implements OnInit {
 
   administradores(){
     this.router.navigateByUrl("/administradores")
+  }
+
+  sair(){
+    SessionService.remove("admLogado")
+    this.router.navigateByUrl("/login")
   }
 
   openCustom() {
